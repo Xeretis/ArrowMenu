@@ -23,7 +23,7 @@ public:
 class LinkOption : public MenuOption {
 public:
     //constructors
-    LinkOption(std::string label, voidFunctionT1 nextFunction, Menu* thiMenu);
+    LinkOption(std::string label, voidFunctionT1 nextFunction, Menu* thisMenu);
     LinkOption(std::string label, voidFunctionT2 nextFunction, std::vector<std::any> args, Menu* thisMenu);
     LinkOption(std::string label, Menu* nextMenu, Menu* thisMenu);
 
@@ -68,5 +68,22 @@ private:
     int changeRate;
 };
 //****end of IntOption
+
+//****BoolOption
+class BoolOption : public MenuOption {
+public:
+    //constructor
+    BoolOption(std::string label, bool& variable);
+
+    //override methods
+    void draw (bool isSelected) override;
+    bool update (bool isSelected) override;
+
+private:
+    //option variables
+    std::string label;
+    bool& variable;
+};
+//****end of BoolOption
 
 #endif

@@ -20,11 +20,11 @@ LinkOption::LinkOption(std::string label, voidFunctionT2 nextFunction, std::vect
 
 void LinkOption::draw(bool isSelected) {
     if (isSelected) {
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 63);
+        setColor(63);
 
         std::cout << label << "\n";
 
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+        setColor(7);
     } else
         std::cout << label << "\n";
 }
@@ -74,21 +74,41 @@ IntOption::IntOption(std::string label, int &variable, int minValue, int maxValu
 
 void IntOption::draw(bool isSelected) {
     if (isSelected) {
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 63);
+        setColor(63);
 
         std::cout << label << " [" << variable << "]\n";
 
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+        setColor(7);
     } else
         std::cout << label << " [" << variable << "]\n";
 }
 
 bool IntOption::update(bool isSelected) {
-    if(GetAsyncKeyState(VK_RIGHT) && maxValue-variable >= changeRate) {
+    if(isSelected && (GetAsyncKeyState(VK_RIGHT) && maxValue-variable >= changeRate))
         variable += changeRate;
-    }
-    if(GetAsyncKeyState(VK_LEFT) && variable-minValue >= changeRate) {
+    if(isSelected && (GetAsyncKeyState(VK_LEFT) && variable-minValue >= changeRate))
         variable -= changeRate;
-    }
     return false;
 }
+//****end of IntOption
+
+//****BoolOption
+BoolOption::BoolOption(std::string label, bool &variable) : label(std::move(label)), variable(variable) { }
+
+void BoolOption::draw(bool isSelected) {
+    if (isSelected) {
+        setColor(63);
+
+        std::cout << label << " [" << std::boolalpha << variable << "]\n";
+
+        setColor(7);
+    } else
+        std::cout << label << " [" << std::boolalpha << variable << "]\n";
+}
+
+bool BoolOption::update(bool isSelected) {
+    if (isSelected && (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_RIGHT)))
+        variable = !variable;
+    return false;
+}
+//****end of BoolOption

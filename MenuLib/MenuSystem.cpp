@@ -70,4 +70,8 @@ void showCursor(bool status) {
     cursorInfo.bVisible = status;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
+
+void setColor(int k) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), k);
+}
 //****end of utils

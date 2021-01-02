@@ -14,9 +14,11 @@ int main() {
     Menu test;
     Menu test2;
     int a = 8;
+    bool b = true;
 
     test.addOption(new LinkOption ("1", test1, &test));
     test.addOption(new LinkOption ("2", &test2, &test));
+    test.addOption(new BoolOption ("bool value", b));
     test.addOption(new IntOption ("a var", a, 1, 6, 2));
 
     test2.addOption(new LinkOption ("65", test1, &test2));

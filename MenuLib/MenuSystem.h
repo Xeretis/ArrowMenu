@@ -30,6 +30,7 @@ private:
 //****uils
 void clearConsoleInputBuffer();
 void showCursor(bool status);
+void setColor(int k);
 //****end of utils
 
 #endif
