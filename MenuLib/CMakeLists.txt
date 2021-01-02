@@ -1,0 +1,1 @@
+add_library(MenuLib MenuSystem.cpp MenuSystem.h Options/MenuOptions.cpp Options/MenuOptions.h)
