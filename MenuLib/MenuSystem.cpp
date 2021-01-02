@@ -6,6 +6,7 @@
 
 #include <windows.h>
 
+//****Menu
 Menu::~Menu() {
     for (MenuOption* option : options)
         delete option;
@@ -16,9 +17,11 @@ void Menu::addOption(MenuOption *newOption) {
 }
 
 void Menu::display(Menu *previousMenu) {
-
+    //set previous menu to be accessible in the future by saving it into a data member
     if (previousMenu != nullptr)
         savedPreviousMenu = previousMenu;
+
+    showCursor(false);
 
     drawOptions();
 
@@ -38,9 +41,9 @@ void Menu::display(Menu *previousMenu) {
         }
         for (int i = 0; i < options.size(); ++i)
             if (options[i]->update(i == selectedOption))
-                goto Break;
+                goto BREAK;
     }
-    Break: ;
+    BREAK: ; //used to break out of nested loop
 }
 
 void Menu::drawOptions() {
@@ -48,3 +51,22 @@ void Menu::drawOptions() {
     for (int i = 0; i < options.size(); ++i)
         options[i]->draw(i == selectedOption);
 }
+//****end of Menu
+
+//****utils
+void clearConsoleInputBuffer()
+{
+    auto ClearingVar1 = new INPUT_RECORD[256];
+    DWORD ClearingVar2;
+    ReadConsoleInput(GetStdHandle(STD_INPUT_HANDLE),ClearingVar1,256,&ClearingVar2);
+    delete[] ClearingVar1;
+}
+
+void showCursor(bool status) {
+    CONSOLE_CURSOR_INFO cursorInfo;
+
+    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+    cursorInfo.bVisible = status;
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
+//****end of utils

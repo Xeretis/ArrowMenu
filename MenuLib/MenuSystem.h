@@ -27,4 +27,9 @@ private:
 };
 //****end of Menu
 
+//****uils
+void clearConsoleInputBuffer();
+void showCursor(bool status);
+//****end of utils
+
 #endif

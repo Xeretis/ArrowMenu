@@ -35,7 +35,6 @@ private:
 
     //private methods
     void backUpdate();
-    static void clearConsoleInputBuffer();
 };
 //****end of LinkOption
 

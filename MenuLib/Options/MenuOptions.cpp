@@ -54,12 +54,4 @@ void LinkOption::backUpdate() {
             clearConsoleInputBuffer();
     }
 }
-
-void LinkOption::clearConsoleInputBuffer()
-{
-    auto ClearingVar1 = new INPUT_RECORD[256];
-    DWORD ClearingVar2;
-    ReadConsoleInput(GetStdHandle(STD_INPUT_HANDLE),ClearingVar1,256,&ClearingVar2);
-    delete[] ClearingVar1;
-}
 //****end of LinkOption
