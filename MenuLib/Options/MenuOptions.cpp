@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <iostream>
+#include <utility>
 
 #include "MenuOptions.h"
 #include "../MenuSystem.h"
@@ -11,26 +12,33 @@ bool MenuOption::update(bool isSelected) { return false; }
 //****end of parent class
 
 //****LinkOption
-LinkOption::LinkOption(voidFunctionType nextFunction, Menu* thisMenu) : nextFunction(nextFunction), thisMenu(thisMenu) { }
+LinkOption::LinkOption(std::string label, voidFunctionT1 nextFunction, Menu* thisMenu) : label(std::move(label)), nextFunctionT1(nextFunction), thisMenu(thisMenu) { }
 
-LinkOption::LinkOption(Menu *nextMenu, Menu* thisMenu) : nextMenu(nextMenu), thisMenu(thisMenu) { }
+LinkOption::LinkOption(std::string label, Menu *nextMenu, Menu* thisMenu) : label(std::move(label)), nextMenu(nextMenu), thisMenu(thisMenu) { }
+
+LinkOption::LinkOption(std::string label, voidFunctionT2 nextFunction, std::vector<std::any> args, Menu* thisMenu) : label(std::move(label)), nextFunctionT2(nextFunction), args(std::move(args)), thisMenu(thisMenu) { }
 
 void LinkOption::draw(bool isSelected) {
     if (isSelected) {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 63);
 
-        std::cout << "selected option" << "\n";
+        std::cout << label << "\n";
 
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
     } else
-        std::cout << "not selected option" << "\n";
+        std::cout << label << "\n";
 }
 
 bool LinkOption::update(bool isSelected) {
     if (GetAsyncKeyState(VK_RETURN) && isSelected) {
-        if (nextFunction != nullptr) {
+        if (nextFunctionT1 != nullptr) {
             system("cls");
-            nextFunction();
+            nextFunctionT1();
+            backUpdate();
+            return true;
+        } else if (nextFunctionT2 != nullptr) {
+            system("cls");
+            nextFunctionT2(args);
             backUpdate();
             return true;
         } else {
@@ -55,3 +63,32 @@ void LinkOption::backUpdate() {
     }
 }
 //****end of LinkOption
+
+//****IntOption
+IntOption::IntOption(std::string label, int &variable, int minValue, int maxValue, int changeRate) : label(std::move(label)), variable(variable), minValue(minValue), maxValue(maxValue), changeRate(changeRate) {
+    if (minValue > variable)
+        this->minValue = variable;
+    if (maxValue < variable)
+        this->maxValue = variable;
+}
+
+void IntOption::draw(bool isSelected) {
+    if (isSelected) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 63);
+
+        std::cout << label << " [" << variable << "]\n";
+
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+    } else
+        std::cout << label << " [" << variable << "]\n";
+}
+
+bool IntOption::update(bool isSelected) {
+    if(GetAsyncKeyState(VK_RIGHT) && maxValue-variable >= changeRate) {
+        variable += changeRate;
+    }
+    if(GetAsyncKeyState(VK_LEFT) && variable-minValue >= changeRate) {
+        variable -= changeRate;
+    }
+    return false;
+}

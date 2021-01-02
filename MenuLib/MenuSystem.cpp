@@ -26,6 +26,7 @@ void Menu::display(Menu *previousMenu) {
     drawOptions();
 
     while (true) {
+        drawOptions();
         Sleep(100);
         if (GetAsyncKeyState(VK_UP) && selectedOption > 0) {
             --selectedOption;
