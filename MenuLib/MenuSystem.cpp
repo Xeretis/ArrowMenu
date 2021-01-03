@@ -1,7 +1,3 @@
-//
-// Created by user on 1/2/2021.
-//
-
 #include "MenuSystem.h"
 
 #include <windows.h>

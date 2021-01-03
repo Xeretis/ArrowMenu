@@ -86,4 +86,21 @@ private:
 };
 //****end of BoolOption
 
+//****ListOption
+class ListOption : public MenuOption {
+public:
+    //constructor
+    ListOption(std::string label, std::vector<std::string>& list, int& index);
+
+    //override methods
+    void draw (bool isSelected) override;
+    bool update (bool isSelected) override;
+private:
+    //option variables
+    std::string label;
+    std::vector<std::string>& list;
+    int& index;
+};
+//****end of ListOption
+
 #endif

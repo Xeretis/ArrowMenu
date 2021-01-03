@@ -112,3 +112,33 @@ bool BoolOption::update(bool isSelected) {
     return false;
 }
 //****end of BoolOption
+
+//****ListOption
+ListOption::ListOption(std::string label, std::vector<std::string>& list, int &index) : label(std::move(label)), list(list), index(index) {
+    if (index > list.size() - 1)
+        index = list.size() - 1;
+    if (index < 0)
+        index = 0;
+}
+
+void ListOption::draw(bool isSelected) {
+    if (isSelected) {
+        setColor(63);
+
+        std::cout << label << " [" << list[index] << "]\n";
+
+        setColor(7);
+    } else
+        std::cout << label << " [" << list[index] << "]\n";
+}
+
+bool ListOption::update(bool isSelected) {
+    if (isSelected) {
+        if (GetAsyncKeyState(VK_RIGHT) && index < list.size() - 1)
+            ++index;
+        if (GetAsyncKeyState(VK_LEFT) && index > 0)
+            --index;
+    }
+    return false;
+}
+//****end of ListOption

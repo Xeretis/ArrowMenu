@@ -10,6 +10,12 @@ void test3 (std::vector<std::any> args) {
     std::cout << *a;
 }
 
+void getItem (std::vector<std::any> args) {
+    int* a = std::any_cast<int*>(args[0]);
+    auto* b = std::any_cast<std::vector<std::string>*>(args[1]);
+    std::cout << b->at(*a);
+}
+
 int main() {
     Menu test;
     Menu test2;
@@ -24,6 +30,11 @@ int main() {
     test2.addOption(new LinkOption ("65", test1, &test2));
     std::vector<std::any> test3Args = {&a};
     test2.addOption(new LinkOption ("a var", test3, test3Args, &test2));
+    std::vector<std::string> testList = { "item1", "item2", "item3" };
+    int in = 7;
+    test2.addOption(new ListOption ("select", testList, in));
+    std::vector<std::any> getItemArgs = {&in, &testList};
+    test2.addOption(new LinkOption("item", getItem, getItemArgs, &test2));
 
     test.display();
     return 0;
