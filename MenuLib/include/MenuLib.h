@@ -1,0 +1,8 @@
+#ifndef MENUSYSTEM_MENULIB_H
+#define MENUSYSTEM_MENULIB_H
+
+class Menu {
+
+};
+
+#endif //MENUSYSTEM_MENULIB_H
