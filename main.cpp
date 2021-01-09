@@ -44,6 +44,9 @@ void showValues(int a, double b, bool c) {
 }
 
 int main() {
+
+    SetConsoleTitle("Demo app");
+
     Menu mainMenu;
     Menu firstScreen;
     Menu fOption;
