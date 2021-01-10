@@ -1,5 +1,5 @@
 # Menu System
-A simple and easy to use library for creating console  with arrow navigation in c++.
+A simple and easy to use library for creating console menus with arrow navigation in c++.
 ## Menu class
 `.addOption(Option* option)` - Used for adding any type of option that inherits from the `Option` class.
 
