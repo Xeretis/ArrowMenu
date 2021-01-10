@@ -31,7 +31,7 @@ void multiplyNumbers(int a, int b, bool hasNumbers) {
     setColor(7);
 }
 
-void showItem(int index, std::vector<std::string> items) {
+void showItem(unsigned int index, std::vector<std::string> items) {
     setColor(3);
     std::cout << "You have " << items[index] << " selected.";
     setColor(7);
@@ -85,7 +85,7 @@ int main() {
     lOption.setDescription("The ListOption allows you\nto chose between a vector\nof strings\n");
     lOption.setFooter("\nUse the sideways arrows to\nselect an item. There is a\nFunctionOption telling you\nwich one you selected");
 
-    int index = 0;
+    unsigned int index = 0;
     std::vector<std::string> items = {"item1", "item2", "item3"};
 
     lOption.addOption(new ListOption("Select an item     ", index, items));

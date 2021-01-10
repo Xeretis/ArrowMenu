@@ -48,14 +48,14 @@ private:
 
 class ListOption : public Option {
 public:
-    ListOption(std::string label, int& index, std::vector<std::string> items);
+    ListOption(std::string label, unsigned int& index, std::vector<std::string> items);
 
     void render(bool isSelected) override;
     bool update() override;
 
 private:
     std::string label;
-    int& index;
+    unsigned int& index;
     std::vector<std::string> items;
 };
 

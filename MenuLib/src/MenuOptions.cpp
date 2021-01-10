@@ -57,13 +57,11 @@ bool MenuOption::update() {
     return false;
 }
 
-ListOption::ListOption(std::string label, int &index, std::vector<std::string> items) : label(std::move(label)), index(index), items(std::move(items)) { }
+ListOption::ListOption(std::string label, unsigned int &index, std::vector<std::string> items) : label(std::move(label)), index(index), items(std::move(items)) { }
 
 void ListOption::render(bool isSelected) {
     //? check if index went over the limit
-    if (index < 0)
-        index = 0;
-    else if (index > items.size() - 1)
+    if (index > items.size() - 1)
         index = items.size() - 1;
 
     if (isSelected) {
