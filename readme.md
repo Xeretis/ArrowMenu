@@ -7,7 +7,7 @@ A simple and easy to use library for creating console menus with arrow navigatio
 
 `.setDescription(std::string description)` - Used for setting the description of the menu. It has a blue text color as well and it is below the title.
 
-`.setFooter` - Used for setting the footer of the menu. It appears below all options and it is blue as well.
+`.setFooter (std::string footer)` - Used for setting the footer of the menu. It appears below all options and it is blue as well.
 
 `.display(Menu* previousMenu = nullptr)` - The method used for displaying your menu. Use it on your main menu at the end of your main function. The previousMenu parameter is used by some options and setting anything manually is *not recommended*. **Warning: This will put your program in an infinite loop and all text previously written to the console will be overwritten. (Use `.setTitle`, `.setDescription` and `.setFooter` for displaying text)**
 
