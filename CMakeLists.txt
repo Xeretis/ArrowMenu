@@ -6,6 +6,6 @@ set(CMAKE_EXE_LINKER_FLAGS -static)
 
 add_executable(MenuSystem main.cpp)
 
-add_subdirectory(MenuLib)
-target_include_directories(${PROJECT_NAME} PRIVATE MenuLib/include)
-target_link_libraries(${PROJECT_NAME} MenuLib)
+add_subdirectory(ArrowMenuLib)
+target_include_directories(${PROJECT_NAME} PRIVATE ArrowMenuLib/include)
+target_link_libraries(${PROJECT_NAME} ArrowMenuLib)
