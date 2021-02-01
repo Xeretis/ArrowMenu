@@ -18,10 +18,14 @@ void FunctionOption::render(bool isSelected) {
 bool FunctionOption::update() {
     if (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_LEFT)) { } //? Used to "catch" these keypresses so they won't cause problems when switching options
     if (GetAsyncKeyState(VK_RETURN)) {
-        origin->exit();
-        showCursor(true);
-        functionCall();
-        escCheck();
+        if (origin) {
+            origin->exit();
+            showCursor(true);
+            functionCall();
+            escCheck();
+        } else {
+            functionCall();
+        }
     }
     return false;
 }

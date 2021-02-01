@@ -22,6 +22,9 @@ public:
     template<typename Func, typename... Args>
     FunctionOption(std::string label, Menu* origin, Func target, Args&... args) : label(std::move(label)), origin(origin), functionCall([target, &args...](){ target(args...); }) { } //? Has to be defined here due to the unholy nature of templates.
 
+    template<typename Func, typename... Args>
+    FunctionOption(std::string label, Func target, Args&... args) : label(std::move(label)), origin(nullptr), functionCall([target, &args...](){ target(args...); }) { } //? Has to be defined here due to the unholy nature of templates.
+
     void render(bool isSelected) override;
     bool update() override;
 

@@ -20,6 +20,12 @@ A simple and easy to use library for creating console menus with arrow navigatio
  - **target:** The function itself.
  - **...args:** The arguments of the target function. (See main.cpp for reference)
 
+`FunctionOption (std::string label, Func target, Args&... args)` - Constructor overload -> Use this if you do not want to leave the menu when executing the function.
+
+- **label:** The string displayed inside the menu.
+- **target:** The function itself.
+- **...args:** The arguments of the target function. (See main.cpp for reference)
+
 `MenuOption (std::string label, Menu* origin, Menu* target)` - Used for navigating to the next menu. Use escape to back from there.
 
  - **label:** The string displayed inside the menu.
