@@ -2,10 +2,6 @@
 
 #include "../include/MenuLib.h"
 
-void Option::render(bool isSelected) { }
-
-bool Option::update() { return false; }
-
 void FunctionOption::render(bool isSelected) {
     if (isSelected) {
         setColor(63);

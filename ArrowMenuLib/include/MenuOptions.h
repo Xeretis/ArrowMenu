@@ -13,8 +13,8 @@ class Menu; //? Necessary forward declaration
 
 class Option {
 public:
-    virtual void render(bool isSelected);
-    virtual bool update();
+    virtual void render(bool isSelected) = 0;
+    virtual bool update() = 0;
 };
 
 class FunctionOption : public Option {
