@@ -52,6 +52,7 @@ A simple and easy to use library for creating console menus with arrow navigatio
  - **value:** The bool value.
 
 ##Utilities
+
 `setColor(int k)` - Used for setting the text color in the console. Basically the same as `SetConsoleTextAttribute`.
 
 `showCursor(bool status)` - Used for hiding/showing the cursor in the consle.
