@@ -50,6 +50,7 @@ A simple and easy to use library for creating console menus with arrow navigatio
 
  - **label:** The string displayed inside the menu.
  - **value:** The bool value.
+
 ##Utilities
 `setColor(int k)` - Used for setting the text color in the console. Basically the same as `SetConsoleTextAttribute`.
 
